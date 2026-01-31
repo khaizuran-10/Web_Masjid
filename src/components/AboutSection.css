@@ -1,0 +1,212 @@
+/* About Section Styles */
+.about-section {
+    padding: 8rem 0;
+    position: relative;
+    background-color: transparent;
+    /* Subtle tint */
+    overflow: hidden;
+}
+
+/* Background Pattern (Subtle) */
+/* Background Pattern Removed for Consistency */
+.about-section::before {
+    display: none;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+/* Image Side */
+.about-image-wrapper {
+    position: relative;
+    padding: 1rem;
+}
+
+.glass-frame {
+    position: relative;
+    border-radius: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    /* More transparent */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transform: rotate(-2deg);
+    transition: transform 0.5s ease;
+}
+
+.glass-frame:hover {
+    transform: rotate(0deg);
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
+.about-badge-glass {
+    position: absolute;
+    bottom: 2rem;
+    right: -1rem;
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark Glass */
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+    transform: translateY(20px);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(20px);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+.badge-number {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    /* Gold */
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.badge-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.8);
+    /* White */
+}
+
+/* Content Side */
+.about-content {
+    position: relative;
+    z-index: 1;
+}
+
+.section-subtitle {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    /* Gold */
+    margin-bottom: 0.5rem;
+}
+
+.section-title-large {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: white;
+    /* White */
+}
+
+.about-description {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    /* Light */
+    margin-bottom: 2.5rem;
+}
+
+/* Features Grid */
+.about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    /* Glass */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-accent);
+    /* Gold */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover .feature-icon {
+    background: var(--color-accent);
+    color: #1a1a1a;
+}
+
+.feature-text {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: white;
+    /* White */
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-image-wrapper {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+
+    .section-title-large {
+        font-size: 2.25rem;
+    }
+
+    .about-badge-glass {
+        right: 0;
+    }
+}
