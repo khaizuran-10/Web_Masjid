@@ -12,6 +12,7 @@ import { DataProvider } from './context/DataContext';
 import LoginPage from './pages/admin/LoginPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import DocumentationPage from './components/DocumentationPage';
+import ArticleDetail from './pages/ArticleDetail';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -74,6 +75,7 @@ const AppContent = () => {
         <Route path="/jadwal-sholat" element={<PrayerPage />} />
         <Route path="/agenda" element={<EventsPage />} />
         <Route path="/artikel" element={<ArticlesPage />} />
+        <Route path="/artikel/:id" element={<ArticleDetail />} />
         <Route path="/dokumentasi" element={<DocumentationPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/admin" element={<AdminDashboard />} />

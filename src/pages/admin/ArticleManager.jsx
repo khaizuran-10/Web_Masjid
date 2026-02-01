@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Edit2, Trash2, X } from 'lucide-react';
+import { Plus, Edit2, Trash2, X, Upload, Image as ImageIcon } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 
 const ArticleManager = () => {
@@ -10,12 +10,19 @@ const ArticleManager = () => {
         title: '',
         category: 'KAJIAN',
         date: '',
-        image: ''
+        image: '',
+        content: ''
     });
 
     const openAddModal = () => {
         setEditingArticle(null);
-        setFormData({ title: '', category: 'KAJIAN', date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }), image: '' });
+        setFormData({
+            title: '',
+            category: 'KAJIAN',
+            date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+            image: '',
+            content: ''
+        });
         setIsModalOpen(true);
     };
 
@@ -23,6 +30,17 @@ const ArticleManager = () => {
         setEditingArticle(article);
         setFormData({ ...article });
         setIsModalOpen(true);
+    };
+
+    const handleFileUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData({ ...formData, image: reader.result });
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     const handleSubmit = (e) => {
@@ -113,14 +131,65 @@ const ArticleManager = () => {
                                     required
                                 />
                             </div>
+                            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                                <label>Gambar Artikel</label>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                    <div className="image-input-group" style={{ display: 'flex', gap: '0.5rem' }}>
+                                        <input
+                                            type="text"
+                                            value={formData.image}
+                                            onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                                            placeholder="URL Gambar (https://...)"
+                                            style={{ flex: 1 }}
+                                        />
+                                        <label className="btn-icon btn-edit" style={{ cursor: 'pointer', minWidth: '42px', height: '42px', flexShrink: 0 }}>
+                                            <Upload size={18} />
+                                            <input type="file" onChange={handleFileUpload} style={{ display: 'none' }} accept="image/*" />
+                                        </label>
+                                    </div>
+
+                                    {formData.image && (
+                                        <div className="image-preview" style={{
+                                            width: '100%',
+                                            height: '150px',
+                                            borderRadius: '0.75rem',
+                                            overflow: 'hidden',
+                                            border: '1px solid rgba(255,255,255,0.1)',
+                                            position: 'relative'
+                                        }}>
+                                            <img
+                                                src={formData.image}
+                                                alt="Preview"
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => setFormData({ ...formData, image: '' })}
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: '0.5rem',
+                                                    right: '0.5rem',
+                                                    background: 'rgba(0,0,0,0.5)',
+                                                    border: 'none',
+                                                    color: 'white',
+                                                    padding: '4px',
+                                                    borderRadius: '50%',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                <X size={14} />
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                             <div className="form-group">
-                                <label>Image URL</label>
-                                <input
-                                    type="text"
-                                    value={formData.image}
-                                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                                    placeholder="https://images.unsplash.com/..."
-                                    required
+                                <label>Isi Artikel (Mendukung HTML dasar)</label>
+                                <textarea
+                                    value={formData.content}
+                                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                                    placeholder="Tulis isi artikel di sini..."
+                                    style={{ width: '100%', minHeight: '150px', padding: '1rem', borderRadius: '0.75rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', fontFamily: 'inherit' }}
                                 />
                             </div>
                             <div className="form-actions">

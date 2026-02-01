@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Save, Plus, Trash2, Users, CheckCircle } from 'lucide-react';
+import { Save, Plus, Trash2, Users, CheckCircle, Upload, X } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 
 const AboutManager = () => {
@@ -15,6 +15,17 @@ const AboutManager = () => {
         features: initialFeatures
     });
     const [status, setStatus] = useState('');
+
+    const handleFileUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData({ ...formData, image: reader.result });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const iconOptions = {
         Users: <Users size={16} />,
@@ -87,13 +98,56 @@ const AboutManager = () => {
 
                     <div className="form-section">
                         <div className="form-group">
-                            <label>Image URL</label>
-                            <input
-                                type="text"
-                                value={formData.image}
-                                onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                                required
-                            />
+                            <label>Gambar Section</label>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <div className="image-input-group" style={{ display: 'flex', gap: '0.5rem' }}>
+                                    <input
+                                        type="text"
+                                        value={formData.image}
+                                        onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                                        placeholder="URL Gambar (https://...)"
+                                        style={{ flex: 1 }}
+                                    />
+                                    <label className="btn-icon btn-edit" style={{ cursor: 'pointer', minWidth: '42px', height: '42px', flexShrink: 0 }}>
+                                        <Upload size={18} />
+                                        <input type="file" onChange={handleFileUpload} style={{ display: 'none' }} accept="image/*" />
+                                    </label>
+                                </div>
+
+                                {formData.image && (
+                                    <div className="image-preview" style={{
+                                        width: '100%',
+                                        height: '180px',
+                                        borderRadius: '1rem',
+                                        overflow: 'hidden',
+                                        border: '1px solid rgba(255,255,255,0.1)',
+                                        position: 'relative'
+                                    }}>
+                                        <img
+                                            src={formData.image}
+                                            alt="Preview"
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setFormData({ ...formData, image: '' })}
+                                            style={{
+                                                position: 'absolute',
+                                                top: '0.5rem',
+                                                right: '0.5rem',
+                                                background: 'rgba(0,0,0,0.5)',
+                                                border: 'none',
+                                                color: 'white',
+                                                padding: '4px',
+                                                borderRadius: '50%',
+                                                cursor: 'pointer'
+                                            }}
+                                        >
+                                            <X size={14} />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                             <div className="form-group">

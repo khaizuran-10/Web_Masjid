@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { LayoutDashboard, FileText, Calendar, Clock, LogOut, ChevronRight, Users, MapPin } from 'lucide-react';
+import { LayoutDashboard, FileText, Calendar, Clock, LogOut, ChevronRight, Users, MapPin, Globe } from 'lucide-react';
 import ArticleManager from './ArticleManager';
 import EventManager from './EventManager';
 import PrayerManager from './PrayerManager';
@@ -110,11 +110,14 @@ const AdminDashboard = () => {
                 </nav>
 
                 <div className="sidebar-footer">
-                    <button onClick={handleLogout} className="btn-logout">
+                    <button onClick={handleLogout} className="btn-sidebar-action btn-logout">
                         <LogOut size={20} />
                         <span>Keluar</span>
                     </button>
-                    <Link to="/" className="back-to-site">Lihat Website</Link>
+                    <Link to="/" className="btn-sidebar-action back-to-site">
+                        <Globe size={20} />
+                        <span>Lihat Website</span>
+                    </Link>
                 </div>
             </aside>
 

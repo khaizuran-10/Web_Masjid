@@ -25,7 +25,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`navbar ${scrolled || !isHome ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-container">
         <Link to="/" className="logo">
           <div className="logo-icon">

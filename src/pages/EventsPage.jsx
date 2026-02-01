@@ -11,7 +11,7 @@ const EventsPage = () => {
                 <h2 className="section-title-md">Agenda Mendatang</h2>
             </div>
 
-            <div className="events-list" style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <div className="events-list">
                 {events.map((event) => (
                     <div key={event.id} className="event-item">
                         <div className="event-date-box">
@@ -27,9 +27,6 @@ const EventsPage = () => {
                                 <MapPin size={14} /> {event.location}
                             </span>
                         </div>
-                        <button className="event-btn">
-                            <ArrowRight size={20} />
-                        </button>
                     </div>
                 ))}
             </div>

@@ -7,8 +7,11 @@ const DocumentationPage = () => {
     return (
         <div className="documentation-page container">
             <div className="section-header reveal">
-                <h2 className="section-title title-display" style={{ color: 'white' }}>Documentation</h2>
+                <h2 className="section-title title-display" style={{ color: 'white' }}>Dokumentasi</h2>
                 <div className="title-accent-line"></div>
+                <p style={{ color: 'rgba(255,255,255,0.6)', marginTop: '1rem', maxWidth: '600px' }}>
+                    Kumpulan momen dan arsip visual kegiatan Masjid Al Amir untuk syiar dan inspirasi umat.
+                </p>
             </div>
 
             <div className="gallery-grid">
@@ -18,6 +21,7 @@ const DocumentationPage = () => {
                         className="gallery-item reveal"
                         style={{ transitionDelay: `${index * 0.1}s` }}
                     >
+                        <div className="gallery-badge">{image.category || 'Galeri'}</div>
                         <img
                             src={image.url}
                             alt={image.title}
@@ -25,6 +29,7 @@ const DocumentationPage = () => {
                             loading="lazy"
                         />
                         <div className="gallery-overlay">
+                            <span className="gallery-subtitle">{image.category}</span>
                             <span className="gallery-title">{image.title}</span>
                         </div>
                     </div>

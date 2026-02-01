@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import '../components/NewsEvents.css'; // Reusing existing styles
 
@@ -11,10 +12,10 @@ const ArticlesPage = () => {
                 <h2 className="section-title-md">Artikel Islami</h2>
             </div>
 
-            <div className="news-list" style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <div className="news-list">
                 {articles.map((item) => (
-                    <div key={item.id} className="news-item">
-                        <div style={{ overflow: 'hidden' }}>
+                    <Link to={`/artikel/${item.id}`} key={item.id} className="news-item">
+                        <div className="news-image-wrapper">
                             <img src={item.image} alt={item.title} className="news-image" />
                         </div>
                         <div className="news-content">
@@ -27,7 +28,7 @@ const ArticlesPage = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>
