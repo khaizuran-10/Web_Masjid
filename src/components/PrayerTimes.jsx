@@ -1,16 +1,23 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Sun, CloudSun, Moon, Sunrise, Sunset, Clock } from 'lucide-react';
+import { useData } from '../context/DataContext';
 import './PrayerTimes.css';
 
 const PrayerTimes = () => {
-    // Mataram, Lombok accurate data for Jan 31, 2026
-    const prayerTimesData = useMemo(() => [
-        { name: 'Subuh', time: '05:11', icon: <Sunrise size={32} strokeWidth={1.5} /> },
-        { name: 'Dzuhur', time: '12:29', icon: <Sun size={32} strokeWidth={1.5} /> },
-        { name: 'Ashar', time: '15:48', icon: <CloudSun size={32} strokeWidth={1.5} /> },
-        { name: 'Maghrib', time: '18:43', icon: <Sunset size={32} strokeWidth={1.5} /> },
-        { name: 'Isya', time: '19:53', icon: <Moon size={32} strokeWidth={1.5} /> },
-    ], []);
+    const { prayers } = useData();
+
+    const prayerTimesData = prayers.map(p => {
+        let icon;
+        switch (p.name) {
+            case 'Subuh': icon = <Sunrise size={32} strokeWidth={1.5} />; break;
+            case 'Dzuhur': icon = <Sun size={32} strokeWidth={1.5} />; break;
+            case 'Ashar': icon = <CloudSun size={32} strokeWidth={1.5} />; break;
+            case 'Maghrib': icon = <Sunset size={32} strokeWidth={1.5} />; break;
+            case 'Isya': icon = <Moon size={32} strokeWidth={1.5} />; break;
+            default: icon = <Clock size={32} strokeWidth={1.5} />;
+        }
+        return { ...p, icon };
+    });
 
     const [now, setNow] = useState(new Date());
     const [nextPrayer, setNextPrayer] = useState(null);

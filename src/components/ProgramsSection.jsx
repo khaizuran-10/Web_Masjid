@@ -1,28 +1,16 @@
-import { BookOpen, Coffee, Users, HeartHandshake } from 'lucide-react';
+import { BookOpen, Coffee, Users, HeartHandshake, HelpCircle } from 'lucide-react';
+import { useData } from '../context/DataContext';
 
 const ProgramsSection = () => {
-    const programs = [
-        {
-            icon: <BookOpen size={28} />,
-            title: "Tahfidz Al-Qur'an",
-            desc: "Program menghafal Al-Qur'an untuk anak-anak dan remaja dengan metode yang menyenangkan."
-        },
-        {
-            icon: <Coffee size={28} />,
-            title: "Kajian Subuh",
-            desc: "Memulai hari dengan ilmu dan keberkahan melalui kajian rutin ba'da subuh setiap akhir pekan."
-        },
-        {
-            icon: <HeartHandshake size={28} />,
-            title: "Jumat Berkah",
-            desc: "Berbagi kebahagiaan dengan membagikan makanan gratis kepada jamaah dan kaum dhuafa setiap Jumat."
-        },
-        {
-            icon: <Users size={28} />,
-            title: "Remaja Masjid",
-            desc: "Wadah kreativitas dan kepemimpinan pemuda dengan berbagai kegiatan positif dan produktif."
-        }
-    ];
+    const { programs } = useData();
+
+    const iconMap = {
+        BookOpen: <BookOpen size={28} />,
+        Coffee: <Coffee size={28} />,
+        Users: <Users size={28} />,
+        HeartHandshake: <HeartHandshake size={28} />,
+        HelpCircle: <HelpCircle size={28} />
+    };
 
     return (
         <section className="programs-section container-fluid">
@@ -35,10 +23,10 @@ const ProgramsSection = () => {
                 </div>
 
                 <div className="programs-grid reveal">
-                    {programs.map((prog, idx) => (
-                        <div key={idx} className="program-card">
+                    {programs.map((prog) => (
+                        <div key={prog.id} className="program-card">
                             <div className="program-icon-box">
-                                {prog.icon}
+                                {iconMap[prog.icon] || <HelpCircle size={28} />}
                             </div>
                             <h3 className="program-title">{prog.title}</h3>
                             <p className="program-desc">{prog.desc}</p>

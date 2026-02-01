@@ -1,30 +1,9 @@
 import { ArrowRight } from 'lucide-react';
+import { useData } from '../context/DataContext';
 import '../components/NewsEvents.css'; // Reusing existing styles
 
 const ArticlesPage = () => {
-    const news = [
-        {
-            id: 1,
-            category: 'KOMUNITAS',
-            title: 'Refleksi Ramadhan: Melayani 500+ Paket Berbuka',
-            date: '22 Maret 2024',
-            image: 'https://images.unsplash.com/photo-1542810634-71277d95dc24?q=80&w=2070&auto=format&fit=crop'
-        },
-        {
-            id: 2,
-            category: 'PEMBANGUNAN',
-            title: 'Update Proyek Perluasan Pusat Pendidikan Al Amir',
-            date: '13 Maret 2024',
-            image: 'https://images.unsplash.com/photo-1594956107871-08520ba63d76?q=80&w=2070&auto=format&fit=crop'
-        },
-        {
-            id: 3,
-            category: 'KAJIAN',
-            title: 'Keutamaan Malam Lailatul Qadar',
-            date: '10 Maret 2024',
-            image: 'https://images.unsplash.com/photo-1532334803456-145612f9a537?q=80&w=2070&auto=format&fit=crop'
-        }
-    ];
+    const { articles } = useData();
 
     return (
         <section className="container" style={{ paddingTop: '120px', paddingBottom: '4rem', minHeight: '100vh' }}>
@@ -33,7 +12,7 @@ const ArticlesPage = () => {
             </div>
 
             <div className="news-list" style={{ maxWidth: '800px', margin: '0 auto' }}>
-                {news.map((item) => (
+                {articles.map((item) => (
                     <div key={item.id} className="news-item">
                         <div style={{ overflow: 'hidden' }}>
                             <img src={item.image} alt={item.title} className="news-image" />

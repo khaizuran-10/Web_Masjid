@@ -1,7 +1,15 @@
 import { CheckCircle, Users } from 'lucide-react';
+import { useData } from '../context/DataContext';
 import './AboutSection.css';
 
 const AboutSection = () => {
+    const { about } = useData();
+
+    const iconMap = {
+        Users: <Users size={20} />,
+        CheckCircle: <CheckCircle size={20} />,
+    };
+
     return (
         <section className="about-section" id="about">
             <div className="about-container container">
@@ -9,43 +17,39 @@ const AboutSection = () => {
                     <div className="about-image-wrapper reveal">
                         <div className="glass-frame">
                             <img
-                                src="https://images.unsplash.com/photo-1564121211835-e88c852648ab?q=80&w=2070&auto=format&fit=crop"
-                                alt="Interior Masjid Al Amir"
+                                src={about.image}
+                                alt={about.title}
                                 className="about-image"
                             />
                         </div>
                         <div className="about-badge-glass">
-                            <span className="badge-number">100%</span>
-                            <span className="badge-text">Aman & Nyaman</span>
+                            <span className="badge-number">{about.badgeNumber}</span>
+                            <span className="badge-text">{about.badgeText}</span>
                         </div>
                     </div>
 
                     <div className="about-content reveal reveal-delay-200">
-                        <span className="section-subtitle">Sekilas Tentang Kami</span>
+                        <span className="section-subtitle">{about.subtitle}</span>
                         <h2 className="section-title-large">
-                            Masjid Al Amir
+                            {about.title}
                         </h2>
                         <p className="about-description">
-                            Sejak didirikan pada tahun 1985, Masjid Al Amir telah menjadi pusat spiritual dan komunitas bagi umat Muslim di wilayah ini. Kami berdedikasi untuk menyediakan fasilitas ibadah yang nyaman, program pendidikan yang mencerahkan, dan layanan sosial yang berdampak luas.
+                            {about.description}
                         </p>
 
                         <div className="about-features">
-                            <div className="feature-item">
-                                <div className="feature-icon"><Users size={20} /></div>
-                                <span className="feature-text">Komunitas Solid</span>
-                            </div>
-                            <div className="feature-item">
-                                <div className="feature-icon"><CheckCircle size={20} /></div>
-                                <span className="feature-text">Fasilitas Lengkap</span>
-                            </div>
-                            <div className="feature-item">
-                                <div className="feature-icon"><CheckCircle size={20} /></div>
-                                <span className="feature-text">Pendidikan Qur'an</span>
-                            </div>
-                            <div className="feature-item">
-                                <div className="feature-icon"><CheckCircle size={20} /></div>
-                                <span className="feature-text">Kajian Rutin</span>
-                            </div>
+                            {about.features.map((feature, idx) => {
+                                const isObject = typeof feature === 'object' && feature !== null;
+                                const text = isObject ? feature.text : feature;
+                                const icon = isObject ? feature.icon : 'CheckCircle';
+
+                                return (
+                                    <div key={idx} className="feature-item">
+                                        <div className="feature-icon">{iconMap[icon] || <CheckCircle size={20} />}</div>
+                                        <span className="feature-text">{text}</span>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
