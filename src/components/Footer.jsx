@@ -1,8 +1,12 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import './Footer.css';
 import { Facebook, Twitter, Instagram, Phone, Mail, MapPin } from 'lucide-react';
+import { useData } from '../context/DataContext';
+import './Footer.css';
 
 const Footer = () => {
+    const { footer } = useData();
+
     return (
         <footer className="footer">
             <div className="container footer-grid">
@@ -12,7 +16,7 @@ const Footer = () => {
                         <span>Masjid Al Amir</span>
                     </div>
                     <p className="footer-desc">
-                        Membangun rasa kebersamaan dan keunggulan spiritual melalui pendidikan, amal, dan layanan masyarakat yang tak tergoyahkan sejak 1985.
+                        {footer.brandDesc}
                     </p>
                     <div className="social-links">
                         <a href="#" className="social-link"><Facebook size={18} /></a>
@@ -36,11 +40,11 @@ const Footer = () => {
                     <ul>
                         <li>
                             <Phone size={18} className="contact-icon" />
-                            <span>+62 (370) 123-4567</span>
+                            <span>{footer.phone}</span>
                         </li>
                         <li>
                             <Mail size={18} className="contact-icon" />
-                            <span>info@alamirmasjid.com</span>
+                            <span>{footer.email}</span>
                         </li>
                     </ul>
                 </div>
@@ -50,17 +54,18 @@ const Footer = () => {
                     <div className="address-content">
                         <MapPin size={20} className="contact-icon" />
                         <p>
-                            Jl. Lingkar Selatan No.RT.01 369<br />
-                            Jempong Baru, Kec. Sekarbela<br />
-                            Kota Mataram, Nusa Tenggara Barat<br />
-                            83361
+                            {footer.address.split('\n').map((line, i) => (
+                                <React.Fragment key={i}>
+                                    {line}<br />
+                                </React.Fragment>
+                            ))}
                         </p>
                     </div>
                 </div>
             </div>
 
             <div className="footer-bottom container">
-                <p className="copyright">&copy; 2026 Komunitas Masjid Al Amir. Didesain dengan Keunggulan.</p>
+                <p className="copyright">&copy; {footer.copyright}</p>
             </div>
         </footer>
     );

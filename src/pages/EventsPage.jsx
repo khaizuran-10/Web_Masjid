@@ -1,33 +1,9 @@
 import { Clock, ArrowRight, MapPin } from 'lucide-react';
+import { useData } from '../context/DataContext';
 import '../components/NewsEvents.css'; // Reusing existing styles
 
 const EventsPage = () => {
-    const events = [
-        {
-            id: 1,
-            day: '25',
-            month: 'MAR',
-            title: 'Malam Khataman Al-Quran',
-            time: '20:00 WIB',
-            location: 'Ruang Sholat Utama'
-        },
-        {
-            id: 2,
-            day: '28',
-            month: 'MAR',
-            title: 'Pesantren Kilat Pemuda',
-            time: '09:00 WIB',
-            location: 'Gedung Serbaguna'
-        },
-        {
-            id: 3,
-            day: '05',
-            month: 'APR',
-            title: 'Sholat Idul Fitri Berjamaah',
-            time: '07:00 WIB',
-            location: 'Stadion Kota'
-        }
-    ];
+    const { events } = useData();
 
     return (
         <section className="container" style={{ paddingTop: '120px', paddingBottom: '4rem', minHeight: '100vh' }}>
