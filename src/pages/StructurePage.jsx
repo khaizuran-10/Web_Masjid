@@ -39,49 +39,49 @@ const StructurePage = () => {
         </div>
     );
 
-    <div className="structure-page container">
-        <div className="section-header reveal">
-            <span className="section-subtitle">Kepengurusan Masjid</span>
-            <h1 className="section-title-large">DKM / Takmir Masjid Al Amir</h1>
-            <p className="section-desc">
-                Dedikasi dan kebersamaan dalam melayani rumah Allah dan umat melalui pengelolaan yang amanah dan transparan.
-            </p>
-            <div className="section-divider"></div>
-        </div>
+    return (
+        <div className="structure-page container">
+            <div className="section-header reveal">
+                <span className="section-subtitle">Kepengurusan Masjid</span>
+                <h1 className="section-title-large">DKM / Takmir Masjid Al Amir</h1>
+                <p className="section-desc">
+                    Dedikasi dan kebersamaan dalam melayani rumah Allah dan umat melalui pengelolaan yang amanah dan transparan.
+                </p>
+                <div className="section-divider"></div>
+            </div>
 
-        <div className="hierarchy-container">
-            {/* Top Row: Chairperson */}
-            {chairperson && (
-                <div className="hierarchy-row hierarchy-top reveal">
-                    <MemberCard member={chairperson} size="large" />
-                </div>
-            )}
-
-            {/* Middle Row: Secretaries and Treasurers */}
-            {coreMembers.length > 0 && (
-                <div className="hierarchy-row hierarchy-middle reveal delay-1">
-                    <div className="core-grid">
-                        {coreMembers.sort((a, b) => (a.order || 0) - (b.order || 0)).map(member => (
-                            <MemberCard key={member.id} member={member} />
-                        ))}
+            <div className="hierarchy-container">
+                {/* Top Row: Chairperson */}
+                {chairperson && (
+                    <div className="hierarchy-row hierarchy-top reveal">
+                        <MemberCard member={chairperson} size="large" />
                     </div>
-                </div>
-            )}
+                )}
 
-            {/* Bottom Section: Divisions */}
-            {divisions.length > 0 && (
-                <div className="hierarchy-section hierarchy-bottom reveal delay-2">
-                    <h2 className="category-title">Bidang-bidang & Divisi</h2>
-                    <div className="structure-grid">
-                        {divisions.sort((a, b) => (a.order || 0) - (b.order || 0)).map(member => (
-                            <MemberCard key={member.id} member={member} />
-                        ))}
+                {/* Middle Row: Secretaries and Treasurers */}
+                {coreMembers.length > 0 && (
+                    <div className="hierarchy-row hierarchy-middle reveal delay-1">
+                        <div className="core-grid">
+                            {coreMembers.sort((a, b) => (a.order || 0) - (b.order || 0)).map(member => (
+                                <MemberCard key={member.id} member={member} />
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+
+                {/* Bottom Section: Divisions */}
+                {divisions.length > 0 && (
+                    <div className="hierarchy-section hierarchy-bottom reveal delay-2">
+                        <h2 className="category-title">Bidang-bidang & Divisi</h2>
+                        <div className="structure-grid">
+                            {divisions.sort((a, b) => (a.order || 0) - (b.order || 0)).map(member => (
+                                <MemberCard key={member.id} member={member} />
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
-    </div>
-        </div >
     );
 };
 
