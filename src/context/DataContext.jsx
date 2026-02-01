@@ -129,6 +129,57 @@ const INITIAL_FOOTER = {
     copyright: '2026 Komunitas Masjid Al Amir. Didesain dengan Keunggulan.'
 };
 
+const INITIAL_BOARD = [
+    {
+        id: 1,
+        name: 'H. Ahmad Syarifuddin',
+        position: 'Ketua Umum DKM',
+        category: 'Pengurus Inti',
+        phone: '081234567890',
+        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop',
+        order: 1
+    },
+    {
+        id: 2,
+        name: 'Drs. M. Zaini',
+        position: 'Sekretaris',
+        category: 'Pengurus Inti',
+        phone: '081234567891',
+        imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop',
+        order: 2
+    },
+    {
+        id: 3,
+        name: 'Hj. Siti Aminah',
+        position: 'Bendahara',
+        category: 'Pengurus Inti',
+        phone: '081234567892',
+        imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop',
+        order: 3
+    },
+    {
+        id: 4,
+        name: 'Ust. Abdullah',
+        position: 'Bidang Dakwah & Ibadah',
+        category: 'Bidang-bidang',
+        order: 4
+    },
+    {
+        id: 5,
+        name: 'Ir. Rahman Hakim',
+        position: 'Bidang Pembangunan',
+        category: 'Bidang-bidang',
+        order: 5
+    },
+    {
+        id: 6,
+        name: 'Samsul Bahri',
+        position: 'Bidang Keamanan',
+        category: 'Bidang-bidang',
+        order: 6
+    }
+];
+
 export const DataProvider = ({ children }) => {
     const [articles, setArticles] = useState(() => {
         const saved = localStorage.getItem('masjid_articles');
@@ -165,6 +216,11 @@ export const DataProvider = ({ children }) => {
         return saved ? JSON.parse(saved) : INITIAL_DOCUMENTATION;
     });
 
+    const [board, setBoard] = useState(() => {
+        const saved = localStorage.getItem('masjid_board');
+        return saved ? JSON.parse(saved) : INITIAL_BOARD;
+    });
+
     useEffect(() => {
         localStorage.setItem('masjid_articles', JSON.stringify(articles));
     }, [articles]);
@@ -192,6 +248,10 @@ export const DataProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('masjid_documentation', JSON.stringify(documentation));
     }, [documentation]);
+
+    useEffect(() => {
+        localStorage.setItem('masjid_board', JSON.stringify(board));
+    }, [board]);
 
     // CRUD for Articles
     const addArticle = (article) => {
@@ -252,6 +312,17 @@ export const DataProvider = ({ children }) => {
         setDocumentation(prev => prev.filter(d => d.id !== id));
     };
 
+    // CRUD for Board
+    const addBoardMember = (member) => {
+        setBoard(prev => [...prev, { ...member, id: Date.now() }]);
+    };
+    const updateBoardMember = (id, updatedMember) => {
+        setBoard(prev => prev.map(m => m.id === id ? { ...updatedMember, id } : m));
+    };
+    const deleteBoardMember = (id) => {
+        setBoard(prev => prev.filter(m => m.id !== id));
+    };
+
     return (
         <DataContext.Provider value={{
             articles, addArticle, updateArticle, deleteArticle,
@@ -260,7 +331,8 @@ export const DataProvider = ({ children }) => {
             about, updateAbout,
             programs, addProgram, updateProgram, deleteProgram,
             footer, updateFooter,
-            documentation, addDocumentation, updateDocumentation, deleteDocumentation
+            documentation, addDocumentation, updateDocumentation, deleteDocumentation,
+            board, addBoardMember, updateBoardMember, deleteBoardMember
         }}>
             {children}
         </DataContext.Provider>

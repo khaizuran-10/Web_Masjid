@@ -1,0 +1,229 @@
+/* Main Containers */
+.structure-page {
+    padding-top: 120px;
+    padding-bottom: 8rem;
+    min-height: 100vh;
+}
+
+.hierarchy-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    margin-top: 4rem;
+    position: relative;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hierarchy-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Core Grid Refinement */
+.core-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    /* Reduced gap */
+    width: 100%;
+    position: relative;
+}
+
+/* Individual Card Design */
+.board-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 1.5rem 1rem;
+    /* Reduced padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.board-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    opacity: 0.3;
+}
+
+.board-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(251, 191, 36, 0.05), transparent 60%);
+    pointer-events: none;
+}
+
+.board-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(251, 191, 36, 0.5);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(251, 191, 36, 0.1);
+}
+
+.board-card:hover::before {
+    opacity: 1;
+}
+
+/* Size Variants */
+.board-card.large {
+    max-width: 320px;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.board-card.large .member-image-container {
+    width: 140px;
+    height: 140px;
+}
+
+/* Image Containers */
+.member-image-container {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    padding: 5px;
+    background: linear-gradient(135deg, var(--color-accent), transparent);
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.member-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #111827;
+}
+
+.member-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+}
+
+/* Typography Refinement */
+.member-position {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+    opacity: 0.9;
+}
+
+.member-name {
+    font-size: 1.25rem;
+    /* Reduced from 1.5rem */
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading);
+}
+
+.member-contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+}
+
+.member-contact:hover {
+    color: white;
+    background: rgba(251, 191, 36, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Divisions Section */
+.hierarchy-bottom {
+    margin-top: 5rem;
+    z-index: 1;
+}
+
+.structure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.category-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: var(--font-heading);
+}
+
+/* Staggered Animations */
+.reveal.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.reveal.delay-2 {
+    transition-delay: 0.4s;
+}
+
+.reveal.delay-3 {
+    transition-delay: 0.6s;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .core-grid {
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .core-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hierarchy-container {
+        gap: 3rem;
+    }
+
+    .member-name {
+        font-size: 1.25rem;
+    }
+
+    .board-card.large {
+        padding: 2.5rem 1.5rem;
+    }
+}

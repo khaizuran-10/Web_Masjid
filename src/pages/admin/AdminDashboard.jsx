@@ -8,6 +8,7 @@ import AboutManager from './AboutManager';
 import ProgramsManager from './ProgramsManager';
 import FooterManager from './FooterManager';
 import DocumentationManager from './DocumentationManager';
+import StructureManager from './StructureManager';
 import './Admin.css';
 
 const AdminDashboard = () => {
@@ -35,6 +36,7 @@ const AdminDashboard = () => {
             case 'programs': return <ProgramsManager />;
             case 'footer': return <FooterManager />;
             case 'documentation': return <DocumentationManager />;
+            case 'structure': return <StructureManager />;
             default: return <ArticleManager />;
         }
     };
@@ -100,11 +102,11 @@ const AdminDashboard = () => {
                         <ChevronRight size={16} className="chevron" />
                     </button>
                     <button
-                        className={`nav-item ${activeTab === 'documentation' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('documentation')}
+                        className={`nav-item ${activeTab === 'structure' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('structure')}
                     >
-                        <FileText size={20} />
-                        <span>Dokumentasi</span>
+                        <Users size={20} />
+                        <span>Struktur DKM</span>
                         <ChevronRight size={16} className="chevron" />
                     </button>
                 </nav>
@@ -128,6 +130,7 @@ const AdminDashboard = () => {
                         {activeTab === 'programs' && 'Manajemen Program'}
                         {activeTab === 'footer' && 'Pengaturan Footer'}
                         {activeTab === 'documentation' && 'Manajemen Dokumentasi'}
+                        {activeTab === 'structure' && 'Manajemen Struktur DKM'}
                     </h2>
                 </header>
                 <div className="admin-content-body">
