@@ -7,6 +7,7 @@ import PrayerManager from './PrayerManager';
 import AboutManager from './AboutManager';
 import ProgramsManager from './ProgramsManager';
 import FooterManager from './FooterManager';
+import DocumentationManager from './DocumentationManager';
 import './Admin.css';
 
 const AdminDashboard = () => {
@@ -33,6 +34,7 @@ const AdminDashboard = () => {
             case 'about': return <AboutManager />;
             case 'programs': return <ProgramsManager />;
             case 'footer': return <FooterManager />;
+            case 'documentation': return <DocumentationManager />;
             default: return <ArticleManager />;
         }
     };
@@ -97,6 +99,14 @@ const AdminDashboard = () => {
                         <span>Footer</span>
                         <ChevronRight size={16} className="chevron" />
                     </button>
+                    <button
+                        className={`nav-item ${activeTab === 'documentation' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('documentation')}
+                    >
+                        <FileText size={20} />
+                        <span>Dokumentasi</span>
+                        <ChevronRight size={16} className="chevron" />
+                    </button>
                 </nav>
 
                 <div className="sidebar-footer">
@@ -117,6 +127,7 @@ const AdminDashboard = () => {
                         {activeTab === 'about' && 'Manajemen Tentang Kami'}
                         {activeTab === 'programs' && 'Manajemen Program'}
                         {activeTab === 'footer' && 'Pengaturan Footer'}
+                        {activeTab === 'documentation' && 'Manajemen Dokumentasi'}
                     </h2>
                 </header>
                 <div className="admin-content-body">

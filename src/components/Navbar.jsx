@@ -40,6 +40,7 @@ const Navbar = () => {
           <li><Link to="/jadwal-sholat">Jadwal Sholat</Link></li>
           <li><Link to="/agenda">Agenda</Link></li>
           <li><Link to="/artikel">Artikel</Link></li>
+          <li><Link to="/dokumentasi">Dokumentasi</Link></li>
 
         </ul>
 
@@ -57,6 +58,7 @@ const Navbar = () => {
             <li><Link to="/jadwal-sholat" onClick={() => setIsOpen(false)}>Jadwal Sholat</Link></li>
             <li><Link to="/agenda" onClick={() => setIsOpen(false)}>Agenda</Link></li>
             <li><Link to="/artikel" onClick={() => setIsOpen(false)}>Artikel</Link></li>
+            <li><Link to="/dokumentasi" onClick={() => setIsOpen(false)}>Dokumentasi</Link></li>
 
           </ul>
         </div>

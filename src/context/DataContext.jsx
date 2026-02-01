@@ -111,6 +111,16 @@ const INITIAL_PROGRAMS = [
     }
 ];
 
+const INITIAL_DOCUMENTATION = [
+    { id: 1, url: '/al amir.jpeg', title: 'Masjid Al Amir', category: 'Eksterior', size: 'large' },
+    { id: 2, url: '/dalam.jpeg', title: 'Kedamaian Interior', category: 'Interior', size: 'normal' },
+    { id: 3, url: '/dokumentasi.jpeg', title: 'Momen Berjamaah', category: 'Kegiatan', size: 'tall' },
+    { id: 4, url: '/hero.jpeg', title: 'Cahaya Iman', category: 'Arsitektur', size: 'wide' },
+    { id: 5, url: '/malam.jpeg', title: 'Kemuliaan Malam', category: 'Suasana', size: 'normal' },
+    { id: 6, url: '/masjid.jpeg', title: 'Gerbang Cahaya', category: 'Eksterior', size: 'tall' },
+    { id: 7, url: '/samping.jpeg', title: 'Detail Arsitektur', category: 'Eksterior', size: 'normal' }
+];
+
 const INITIAL_FOOTER = {
     brandDesc: 'Membangun rasa kebersamaan dan keunggulan spiritual melalui pendidikan, amal, dan layanan masyarakat yang tak tergoyahkan sejak 1985.',
     phone: '+62 (370) 123-4567',
@@ -150,6 +160,11 @@ export const DataProvider = ({ children }) => {
         return saved ? JSON.parse(saved) : INITIAL_FOOTER;
     });
 
+    const [documentation, setDocumentation] = useState(() => {
+        const saved = localStorage.getItem('masjid_documentation');
+        return saved ? JSON.parse(saved) : INITIAL_DOCUMENTATION;
+    });
+
     useEffect(() => {
         localStorage.setItem('masjid_articles', JSON.stringify(articles));
     }, [articles]);
@@ -173,6 +188,10 @@ export const DataProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('masjid_footer', JSON.stringify(footer));
     }, [footer]);
+
+    useEffect(() => {
+        localStorage.setItem('masjid_documentation', JSON.stringify(documentation));
+    }, [documentation]);
 
     // CRUD for Articles
     const addArticle = (article) => {
@@ -222,6 +241,17 @@ export const DataProvider = ({ children }) => {
         setFooter(updatedFooter);
     };
 
+    // CRUD for Documentation
+    const addDocumentation = (item) => {
+        setDocumentation(prev => [{ ...item, id: Date.now() }, ...prev]);
+    };
+    const updateDocumentation = (id, updatedItem) => {
+        setDocumentation(prev => prev.map(d => d.id === id ? { ...updatedItem, id } : d));
+    };
+    const deleteDocumentation = (id) => {
+        setDocumentation(prev => prev.filter(d => d.id !== id));
+    };
+
     return (
         <DataContext.Provider value={{
             articles, addArticle, updateArticle, deleteArticle,
@@ -229,7 +259,8 @@ export const DataProvider = ({ children }) => {
             prayers, updatePrayer,
             about, updateAbout,
             programs, addProgram, updateProgram, deleteProgram,
-            footer, updateFooter
+            footer, updateFooter,
+            documentation, addDocumentation, updateDocumentation, deleteDocumentation
         }}>
             {children}
         </DataContext.Provider>

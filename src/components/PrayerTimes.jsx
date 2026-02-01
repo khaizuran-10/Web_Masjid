@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Sun, CloudSun, Moon, Sunrise, Sunset, Clock } from 'lucide-react';
 import { useData } from '../context/DataContext';
 import './PrayerTimes.css';
@@ -6,18 +6,20 @@ import './PrayerTimes.css';
 const PrayerTimes = () => {
     const { prayers } = useData();
 
-    const prayerTimesData = prayers.map(p => {
-        let icon;
-        switch (p.name) {
-            case 'Subuh': icon = <Sunrise size={32} strokeWidth={1.5} />; break;
-            case 'Dzuhur': icon = <Sun size={32} strokeWidth={1.5} />; break;
-            case 'Ashar': icon = <CloudSun size={32} strokeWidth={1.5} />; break;
-            case 'Maghrib': icon = <Sunset size={32} strokeWidth={1.5} />; break;
-            case 'Isya': icon = <Moon size={32} strokeWidth={1.5} />; break;
-            default: icon = <Clock size={32} strokeWidth={1.5} />;
-        }
-        return { ...p, icon };
-    });
+    const prayerTimesData = useMemo(() => {
+        return prayers.map(p => {
+            let icon;
+            switch (p.name) {
+                case 'Subuh': icon = <Sunrise size={32} strokeWidth={1.5} />; break;
+                case 'Dzuhur': icon = <Sun size={32} strokeWidth={1.5} />; break;
+                case 'Ashar': icon = <CloudSun size={32} strokeWidth={1.5} />; break;
+                case 'Maghrib': icon = <Sunset size={32} strokeWidth={1.5} />; break;
+                case 'Isya': icon = <Moon size={32} strokeWidth={1.5} />; break;
+                default: icon = <Clock size={32} strokeWidth={1.5} />;
+            }
+            return { ...p, icon };
+        });
+    }, [prayers]);
 
     const [now, setNow] = useState(new Date());
     const [nextPrayer, setNextPrayer] = useState(null);
@@ -53,7 +55,13 @@ const PrayerTimes = () => {
                 next = { ...prayerTimesData[0], isTomorrow: true };
             }
 
-            setNextPrayer(next);
+            // Only update nextPrayer if the name or day has changed to avoid infinite loops
+            setNextPrayer(prev => {
+                if (!prev || prev.name !== next.name || prev.isTomorrow !== next.isTomorrow) {
+                    return next;
+                }
+                return prev;
+            });
 
             // Calculate countdown
             const [nextH, nextM] = next.time.split(':').map(Number);
