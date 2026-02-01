@@ -20,9 +20,79 @@
 
 .prayer-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     position: relative;
     z-index: 10;
+}
+
+/* Countdown Banner */
+.countdown-banner {
+    max-width: 450px;
+    margin: 0 auto 3.5rem;
+    position: relative;
+    z-index: 20;
+}
+
+.countdown-content {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    padding: 0.85rem 1.5rem;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 0 15px rgba(251, 191, 36, 0.05);
+}
+
+.countdown-label {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.15em;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 1.5rem;
+    white-space: nowrap;
+}
+
+.countdown-timer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-icon {
+    animation: timerPulse 2s infinite ease-in-out;
+}
+
+@keyframes timerPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
 }
 
 .section-title-display {
@@ -178,6 +248,58 @@
     text-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
 }
 
+/* Prayer Quote Section */
+.prayer-quote {
+    max-width: 800px;
+    margin: 4rem auto 0;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.quote-container {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 3rem 4rem;
+    border-radius: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-container::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 40px;
+    font-size: 150px;
+    color: var(--color-accent);
+    opacity: 0.1;
+    font-family: serif;
+    line-height: 1;
+}
+
+.quote-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.quote-source {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
     .section-title-display {
@@ -203,6 +325,14 @@
         width: 52px;
         height: 52px;
     }
+
+    .quote-container {
+        padding: 2.5rem 2rem;
+    }
+
+    .quote-text {
+        font-size: 1.25rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -212,5 +342,9 @@
 
     .prayer-card.active {
         transform: scale(1);
+    }
+
+    .prayer-quote {
+        margin-top: 3rem;
     }
 }

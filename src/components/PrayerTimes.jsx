@@ -1,17 +1,76 @@
-import { Sun, CloudSun, Moon, Sunrise, Sunset } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { Sun, CloudSun, Moon, Sunrise, Sunset, Clock } from 'lucide-react';
 import './PrayerTimes.css';
 
 const PrayerTimes = () => {
-    // Mock data with Icons
-    const times = [
-        { name: 'Subuh', time: '04:45', icon: <Sunrise size={32} strokeWidth={1.5} /> },
-        { name: 'Dzuhur', time: '12:15', icon: <Sun size={32} strokeWidth={1.5} /> },
-        { name: 'Ashar', time: '15:30', active: true, icon: <CloudSun size={32} strokeWidth={1.5} /> },
-        { name: 'Maghrib', time: '18:10', icon: <Sunset size={32} strokeWidth={1.5} /> },
-        { name: 'Isya', time: '19:25', icon: <Moon size={32} strokeWidth={1.5} /> },
-    ];
+    // Mataram, Lombok accurate data for Jan 31, 2026
+    const prayerTimesData = useMemo(() => [
+        { name: 'Subuh', time: '05:11', icon: <Sunrise size={32} strokeWidth={1.5} /> },
+        { name: 'Dzuhur', time: '12:29', icon: <Sun size={32} strokeWidth={1.5} /> },
+        { name: 'Ashar', time: '15:48', icon: <CloudSun size={32} strokeWidth={1.5} /> },
+        { name: 'Maghrib', time: '18:43', icon: <Sunset size={32} strokeWidth={1.5} /> },
+        { name: 'Isya', time: '19:53', icon: <Moon size={32} strokeWidth={1.5} /> },
+    ], []);
 
-    const today = new Date().toLocaleDateString('id-ID', {
+    const [now, setNow] = useState(new Date());
+    const [nextPrayer, setNextPrayer] = useState(null);
+    const [countdown, setCountdown] = useState('');
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setNow(new Date());
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    useEffect(() => {
+        const findNextPrayer = () => {
+            const currentHours = now.getHours();
+            const currentMinutes = now.getMinutes();
+            const currentTimeInMinutes = currentHours * 60 + currentMinutes;
+
+            let next = null;
+            for (const prayer of prayerTimesData) {
+                const [hours, minutes] = prayer.time.split(':').map(Number);
+                const prayerTimeInMinutes = hours * 60 + minutes;
+
+                if (prayerTimeInMinutes > currentTimeInMinutes) {
+                    next = prayer;
+                    break;
+                }
+            }
+
+            // If no next prayer today, the next one is Subuh tomorrow
+            if (!next) {
+                next = { ...prayerTimesData[0], isTomorrow: true };
+            }
+
+            setNextPrayer(next);
+
+            // Calculate countdown
+            const [nextH, nextM] = next.time.split(':').map(Number);
+            let targetDate = new Date(now);
+            targetDate.setHours(nextH, nextM, 0, 0);
+
+            if (next.isTomorrow) {
+                targetDate.setDate(targetDate.getDate() + 1);
+            }
+
+            const diff = targetDate - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            setCountdown(
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+            );
+        };
+
+        findNextPrayer();
+    }, [now, prayerTimesData]);
+
+    const todayString = now.toLocaleDateString('id-ID', {
         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
 
@@ -19,20 +78,44 @@ const PrayerTimes = () => {
         <section className="prayer-section container-fluid" id="prayer-times">
             <div className="container">
                 <div className="prayer-header">
-                    <span className="section-subtitle">{today}</span>
-                    <h2 className="section-title-display">Jadwal Sholat Harian</h2>
+                    <span className="section-subtitle">{todayString}</span>
+                    <h2 className="section-title-display">Jadwal Sholat Mataram</h2>
                 </div>
 
-                <div className="prayer-grid">
-                    {times.map((prayer) => (
-                        <div key={prayer.name} className={`prayer-card ${prayer.active ? 'active' : ''}`}>
-                            <div className="prayer-icon-wrapper">
-                                {prayer.icon}
+                {nextPrayer && (
+                    <div className="countdown-banner reveal">
+                        <div className="countdown-content">
+                            <span className="countdown-label">Menuju {nextPrayer.name}</span>
+                            <div className="countdown-timer">
+                                <Clock size={24} className="timer-icon" />
+                                <span>{countdown}</span>
                             </div>
-                            <span className="prayer-name">{prayer.name}</span>
-                            <span className="prayer-time">{prayer.time}</span>
                         </div>
-                    ))}
+                    </div>
+                )}
+
+                <div className="prayer-grid">
+                    {prayerTimesData.map((prayer) => {
+                        const isActive = nextPrayer && !nextPrayer.isTomorrow && nextPrayer.name === prayer.name;
+                        return (
+                            <div key={prayer.name} className={`prayer-card ${isActive ? 'active' : ''}`}>
+                                <div className="prayer-icon-wrapper">
+                                    {prayer.icon}
+                                </div>
+                                <span className="prayer-name">{prayer.name}</span>
+                                <span className="prayer-time">{prayer.time}</span>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <div className="prayer-quote reveal" style={{ marginTop: '4rem' }}>
+                    <div className="quote-container">
+                        <p className="quote-text">
+                            "Sesungguhnya shalat itu mencegah dari (perbuatan-perbuatan) keji dan mungkar."
+                        </p>
+                        <span className="quote-source">— QS. Al-Ankabut: 45</span>
+                    </div>
                 </div>
             </div>
         </section>
