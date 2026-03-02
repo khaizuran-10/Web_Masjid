@@ -13,13 +13,12 @@ const ProgramsSection = () => {
     };
 
     return (
-        <section className="programs-section container-fluid">
+        <section className="programs-section">
             <div className="container">
-                <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center', border: 'none' }}>
-                    <div className="title-group">
-                        <span className="section-title-sm" style={{ display: 'block', marginBottom: '0.5rem' }}>Aktivitas Kami</span>
-                        <h2 className="title-display" style={{ fontSize: '2.5rem' }}>Program Unggulan</h2>
-                    </div>
+                <div className="section-header center reveal">
+                    <span className="section-subtitle">Aktivitas Kami</span>
+                    <h2 className="section-title-large">Program Unggulan</h2>
+                    <div className="section-divider"></div>
                 </div>
 
                 <div className="programs-grid reveal">

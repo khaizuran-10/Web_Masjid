@@ -1,11 +1,18 @@
 import PrayerTimes from '../components/PrayerTimes';
+import PageHeader from '../components/PageHeader';
 
 const PrayerPage = () => {
-    // Add top padding to account for fixed navbar
     return (
-        <div style={{ paddingTop: '80px', minHeight: '100vh' }}>
-            <PrayerTimes />
-        </div>
+        <main className="prayer-page">
+            <PageHeader
+                title="Jadwal Sholat"
+                subtitle="Waktu Ibadah"
+                description="Jadwal sholat akurat untuk wilayah Mataram, Lombok dan sekitarnya (WITA)."
+            />
+            <div className="reveal">
+                <PrayerTimes />
+            </div>
+        </main>
     );
 };
 

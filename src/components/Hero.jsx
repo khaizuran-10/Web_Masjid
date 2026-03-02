@@ -69,14 +69,14 @@ const Hero = () => {
             <div className="hero-content container">
                 <span className="hero-subtitle">Selamat Datang di Masjid Al Amir</span>
                 <h1 className="hero-title">
-                    Rasakan Kedamaian <br /> & Ketenangan Jiwa
+                    Masjid Al Wildan <br /> Islamic International School 20
                 </h1>
                 <p className="hero-text">
-                    Bergabunglah bersama kami di ruang suci yang dirancang untuk ibadah, pembelajaran, dan ukhuwah islamiyah di jantung kota.
+                    Pusat Ibadah, Dakwah, dan Pendidikan Al-Qur'an di Mataram. Melayani Jamaah dan Masyarakat Umum 24 Jam Berlandaskan Al-Qur'an dan Sunnah.
                 </p>
 
                 <div className="hero-buttons">
-                    <a href="#prayer-times" className="btn btn-primary-hero">Lihat Jadwal Sholat</a>
+                    <a href="jadwal-sholat" className="btn btn-primary-hero">Lihat Jadwal Sholat</a>
                 </div>
 
                 {/* Glassmorphism Prayer Card */}

@@ -71,16 +71,16 @@ const INITIAL_PRAYERS = [
 
 const INITIAL_ABOUT = {
     title: 'Masjid Al Amir',
-    subtitle: 'Sekilas Tentang Kami',
-    description: 'Sejak didirikan pada tahun 1985, Masjid Al Amir telah menjadi pusat spiritual dan komunitas bagi umat Muslim di wilayah ini. Kami berdedikasi untuk menyediakan fasilitas ibadah yang nyaman, program pendidikan yang mencerahkan, dan layanan sosial yang berdampak luas.',
-    image: 'https://images.unsplash.com/photo-1564121211835-e88c852648ab?q=80&w=2070&auto=format&fit=crop',
-    badgeNumber: '100%',
-    badgeText: 'Aman & Nyaman',
+    subtitle: 'Masjid Al Wildan Islamic International School 20 Mataram',
+    description: 'Masjid Al Amir adalah pusat ibadah dan dakwah Al Wildan Islamic International School 20 Mataram yang berlandaskan Al-Qur’an dan Sunnah. Diresmikan pada 14 Februari 2026 oleh Yayasan Metro Insan Pendidikan, masjid ini hadir sebagai sarana ibadah yang representatif bagi siswa maupun masyarakat umum.\n\nBeroperasi selama 24 jam, Masjid Al Amir berkomitmen mendukung pembinaan karakter Islami, pendidikan Al-Qur’an, serta kepedulian sosial bagi seluruh lapisan masyarakat.',
+    image: '/al amir.jpeg',
+    badgeNumber: '24 Jam',
+    badgeText: 'Operasional Ibadah',
     features: [
-        { text: 'Komunitas Solid', icon: 'Users' },
-        { text: 'Fasilitas Lengkap', icon: 'CheckCircle' },
-        { text: 'Pendidikan Qur\'an', icon: 'CheckCircle' },
-        { text: 'Kajian Rutin', icon: 'CheckCircle' }
+        { text: 'Terbuka Untuk Umum', icon: 'Users' },
+        { text: 'Berlandaskan Sunnah', icon: 'CheckCircle' },
+        { text: 'Pusat Dakwah & Ilmu', icon: 'CheckCircle' },
+        { text: 'Pendidikan Al-Qur\'an', icon: 'CheckCircle' }
     ]
 };
 
@@ -122,62 +122,42 @@ const INITIAL_DOCUMENTATION = [
 ];
 
 const INITIAL_FOOTER = {
-    brandDesc: 'Membangun rasa kebersamaan dan keunggulan spiritual melalui pendidikan, amal, dan layanan masyarakat yang tak tergoyahkan sejak 1985.',
-    phone: '+62 (370) 123-4567',
-    email: 'info@alamirmasjid.com',
-    address: 'Jl. Lingkar Selatan No.RT.01 369\nJempong Baru, Kec. Sekarbela\nKota Mataram, Nusa Tenggara Barat\n83361',
-    copyright: '2026 Komunitas Masjid Al Amir. Didesain dengan Keunggulan.'
+    brandDesc: 'Masjid Al Wildan Islamic International School 20 Mataram. Pusat ibadah, dakwah, dan pendidikan Al-Qur\'an yang melayani jamaah dan masyarakat umum 24 jam.',
+    phone: '0852-1330-3940',
+    email: 'alamirmosque@gmail.com',
+    address: 'Mataram, Nusa Tenggara Barat\n(Lokasi Al Wildan 20 Mataram)',
+    copyright: '2026 Masjid Al Amir. Part of Al Wildan 20 Mataram.'
 };
 
 const INITIAL_BOARD = [
-    {
-        id: 1,
-        name: 'H. Ahmad Syarifuddin',
-        position: 'Ketua Umum DKM',
-        category: 'Pengurus Inti',
-        phone: '081234567890',
-        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop',
-        order: 1
-    },
-    {
-        id: 2,
-        name: 'Drs. M. Zaini',
-        position: 'Sekretaris',
-        category: 'Pengurus Inti',
-        phone: '081234567891',
-        imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop',
-        order: 2
-    },
-    {
-        id: 3,
-        name: 'Hj. Siti Aminah',
-        position: 'Bendahara',
-        category: 'Pengurus Inti',
-        phone: '081234567892',
-        imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop',
-        order: 3
-    },
-    {
-        id: 4,
-        name: 'Ust. Abdullah',
-        position: 'Bidang Dakwah & Ibadah',
-        category: 'Bidang-bidang',
-        order: 4
-    },
-    {
-        id: 5,
-        name: 'Ir. Rahman Hakim',
-        position: 'Bidang Pembangunan',
-        category: 'Bidang-bidang',
-        order: 5
-    },
-    {
-        id: 6,
-        name: 'Samsul Bahri',
-        position: 'Bidang Keamanan',
-        category: 'Bidang-bidang',
-        order: 6
-    }
+    // Penanggung Jawab
+    { id: 1, name: 'Risqi Aguspianto, M. Pd.', position: 'Penanggung Jawab', category: 'Penasehat', order: 1 },
+    { id: 2, name: 'Amirullah, M. Pd.', position: 'Penanggung Jawab', category: 'Penasehat', order: 2 },
+    { id: 3, name: 'Galuh Pramananda, M. Pd.', position: 'Penanggung Jawab', category: 'Penasehat', order: 3 },
+    { id: 4, name: 'Habibullah, M. A.', position: 'Penanggung Jawab', category: 'Penasehat', order: 4 },
+
+    // Penasehat
+    { id: 5, name: 'Abu Muhammad', position: 'Penasehat', category: 'Penasehat', order: 5 },
+
+    // Pelaksana (Pengurus Inti)
+    { id: 6, name: 'Ammar Abdurrahman, S. Ag.', position: 'Ketua', category: 'Pengurus Inti', order: 6 },
+    { id: 7, name: 'Ulumuddin, S. Ag.', position: 'Wakil Ketua', category: 'Pengurus Inti', order: 7 },
+    { id: 8, name: 'Ahmad Fadhil Al Faruqi, S. Ag.', position: 'Sekretaris', category: 'Pengurus Inti', order: 8 },
+    { id: 9, name: 'Yuyun Astri, S. Ag.', position: 'Bendahara', category: 'Pengurus Inti', order: 9 },
+
+    // Bidang-bidang (Divisi)
+    { id: 10, name: 'Ustadz Muhammad Ryan Kurniawan, M.Pd', position: 'Imarah', category: 'Bidang-bidang', order: 10 },
+    { id: 11, name: 'Muhammad Amin Al-Kutbi, S.Sos', position: 'Imarah', category: 'Bidang-bidang', order: 11 },
+    { id: 12, name: 'Muhammad, S.Pd', position: 'Idarah', category: 'Bidang-bidang', order: 12 },
+    { id: 13, name: 'Muhammad Sa’i Ar Rosyidi', position: 'Riayah', category: 'Bidang-bidang', order: 13 },
+    { id: 14, name: 'Muhammad Bagis, Lc.', position: 'Pendidikan dan Dakwah', category: 'Bidang-bidang', order: 14 },
+    { id: 15, name: 'Nawwaf Nazmi Bafadh, S. Ag.', position: 'Pendidikan dan Dakwah', category: 'Bidang-bidang', order: 15 },
+    { id: 16, name: 'Thufail Mujaddid Al-Qoyyim, S. Pd.', position: 'Sosial', category: 'Bidang-bidang', order: 16 },
+    { id: 17, name: 'Lalu Umar Harun, S. T.', position: 'Sosial', category: 'Bidang-bidang', order: 17 },
+    { id: 18, name: 'Aulia Azka, S.H., M.H.', position: 'Humas dan Publikasi', category: 'Bidang-bidang', order: 18 },
+    { id: 19, name: 'Syifa Sabriani, S. Pd.', position: 'Humas dan Publikasi', category: 'Bidang-bidang', order: 19 },
+    { id: 20, name: 'Gazwan Firdaus', position: 'Sarana dan Prasarana', category: 'Bidang-bidang', order: 20 },
+    { id: 21, name: 'Muhammad Anwar Effendi, S. Pd.', position: 'Media', category: 'Bidang-bidang', order: 21 },
 ];
 
 export const DataProvider = ({ children }) => {

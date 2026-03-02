@@ -169,6 +169,22 @@ button {
   letter-spacing: -0.02em;
 }
 
+.section-header.center {
+  text-align: center;
+  border: none;
+  margin-bottom: 4rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-divider {
+  width: 60px;
+  height: 4px;
+  background: var(--color-accent);
+  margin: 1.5rem auto 0;
+  border-radius: 2px;
+}
+
 /* About Section */
 .about-section {
   padding: 6rem 1rem;
@@ -310,22 +326,41 @@ button {
 
 .program-card {
   background: rgba(255, 255, 255, 0.03);
-  /* Very subtle glass */
   backdrop-filter: blur(10px);
-  border-radius: 1.5rem;
-  padding: 2.5rem 2rem;
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .program-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px);
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   border-color: var(--color-accent);
+}
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(251, 191, 36, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.program-card:hover::before {
+  opacity: 1;
 }
 
 .program-card::after {

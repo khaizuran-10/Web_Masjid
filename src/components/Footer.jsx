@@ -20,8 +20,7 @@ const Footer = () => {
                     </p>
                     <div className="social-links">
                         <a href="#" className="social-link"><Facebook size={18} /></a>
-                        <a href="#" className="social-link"><Twitter size={18} /></a>
-                        <a href="#" className="social-link"><Instagram size={18} /></a>
+                        <a href="https://instagram.com/masjidalamiralwildan20" target="_blank" rel="noopener noreferrer" className="social-link"><Instagram size={18} /></a>
                     </div>
                 </div>
 
