@@ -1,56 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Color Palette - Emerald Green & Gold */
-  --color-primary: #047857;
+  /* Color Palette - Emerald Green & Gold (Premium HSL) */
+  --hsl-primary: 161, 94%, 25%;
   /* Emerald 700 */
-  --color-primary-dark: #064E3B;
-  /* Emerald 900 - Deepest Green */
-  --color-primary-light: #10B981;
+  --hsl-primary-dark: 164, 86%, 16%;
+  /* Emerald 900 */
+  --hsl-primary-light: 161, 94%, 39%;
   /* Emerald 500 */
 
-  --color-accent: #fbbf24;
-  /* Amber 400 - Soft Gold */
-  --color-accent-hover: #d97706;
-  /* Amber 600 */
-  --color-accent-light: #fcd34d;
-  /* Amber 300 */
+  --color-primary: hsl(var(--hsl-primary));
+  --color-primary-dark: hsl(var(--hsl-primary-dark));
+  --color-primary-light: hsl(var(--hsl-primary-light));
 
-  /* Text Colors - DARK MODE DEFAULT */
+  --hsl-accent: 45, 93%, 47%;
+  /* Amber 500 - Gold */
+  --color-accent: hsl(var(--hsl-accent));
+  --color-accent-hover: hsl(45, 93%, 37%);
+  --color-accent-light: hsl(45, 93%, 67%);
+
+  /* Text Colors */
   --color-text-main: #FFFFFF;
-  /* White */
-  --color-text-light: #D1D5DB;
-  /* Gray 300 */
-  --color-text-white: #FFFFFF;
-  --color-text-dark: #1F2937;
-  /* For inside white inputs/modals if needed */
+  --color-text-light: rgba(255, 255, 255, 0.75);
+  --color-text-muted: rgba(255, 255, 255, 0.5);
+  --color-text-dark: #111827;
 
   /* Backgrounds */
-  --color-bg-light: #F9FAFB;
-  /* Gray 50 */
-  --color-bg-white: #FFFFFF;
-  --color-bg-dark: #111827;
-  /* Gray 900 for Dark Mode */
+  --color-bg-dark: #020617;
+  /* Deepest Navy/Green */
+  --color-bg-section: #064E3B;
+  /* Emerald 900 for dark sections */
 
   /* Fonts */
   --font-heading: 'Montserrat', sans-serif;
   --font-body: 'Lato', sans-serif;
 
+  /* Premium Glassmorphism 2.0 */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 16px;
+  --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
 
-  /* Glassmorphism Tokens */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  /* Very transparent */
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-  --glass-blur: 12px;
+  --glass-accent-bg: rgba(251, 191, 36, 0.05);
+  --glass-accent-border: rgba(251, 191, 36, 0.2);
 
-  /* Spacing & Effects */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-gold: 0 4px 14px 0 rgba(251, 191, 36, 0.39);
-  --radius: 0.75rem;
+  /* Elevation */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  --shadow-gold: 0 0 20px rgba(251, 191, 36, 0.2);
+
+  --radius: 1rem;
+  --radius-lg: 2rem;
 }
 
 * {
@@ -84,8 +86,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(6, 78, 59, 0.7);
-  /* Reduced opacity for more transparency */
+  background: rgba(6, 78, 59, 0.5);
+  /* Restored original emerald transparency */
   z-index: -1;
   pointer-events: none;
 }
@@ -116,73 +118,83 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius);
-  font-weight: 600;
-  transition: all 0.3s ease;
+  padding: 0.875rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   font-family: var(--font-heading);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: white;
-  box-shadow: 0 4px 6px rgba(4, 120, 87, 0.2);
+  box-shadow: 0 10px 20px -5px rgba(4, 120, 87, 0.4);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(4, 120, 87, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px -5px rgba(4, 120, 87, 0.6);
+  filter: brightness(1.1);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: var(--color-primary-dark);
-  border: 1px solid var(--color-primary-dark);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-bg-light);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+  border-color: white;
 }
 
 .btn-accent {
-  background-color: var(--color-accent);
-  color: #1a1a1a;
-  box-shadow: var(--shadow-gold);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+  color: #000;
+  box-shadow: 0 10px 20px -5px rgba(251, 191, 36, 0.4);
 }
 
 .btn-accent:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px -5px rgba(251, 191, 36, 0.6);
+  filter: brightness(1.1);
 }
 
 .section-title {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--color-primary-dark);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(to bottom, #FFFFFF, #94A3B8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
 }
 
 .section-header.center {
   text-align: center;
-  border: none;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .section-divider {
-  width: 60px;
-  height: 4px;
-  background: var(--color-accent);
-  margin: 1.5rem auto 0;
-  border-radius: 2px;
+  display: none;
 }
 
 /* About Section */
@@ -324,12 +336,19 @@ button {
   margin: 0 auto;
 }
 
+@media (max-width: 640px) {
+  .programs-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 .program-card {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 2rem;
-  padding: 3rem 2rem;
+  padding: 3.5rem 2.5rem;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -338,6 +357,23 @@ button {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.program-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('./assets/islamic-pattern.png');
+  background-size: 200px;
+  opacity: 0.03;
+  z-index: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.program-card:hover::after {
+  opacity: 0.08;
 }
 
 .program-card:hover {

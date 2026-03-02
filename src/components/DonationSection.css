@@ -1,15 +1,27 @@
 /* Donation Section */
 .donation-section {
-    padding: 8rem 1rem 6rem;
-    background-color: transparent;
+    padding: 12rem 1rem;
+    background: transparent;
     position: relative;
     color: white;
+    overflow: hidden;
+}
+
+.donation-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(251, 191, 36, 0.05), transparent 40%);
+    pointer-events: none;
 }
 
 .donation-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 8rem;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -18,267 +30,276 @@
 /* Left Content */
 .donation-content .title-display {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #FFFFFF, #94A3B8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .highlight-gold {
     color: var(--color-accent);
-    position: relative;
-    display: inline-block;
-}
-
-.highlight-gold::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 0;
-    width: 100%;
-    height: 8px;
-    background: rgba(251, 191, 36, 0.2);
-    z-index: -1;
-    transform: rotate(-1deg);
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .donation-text-sub {
-    font-family: var(--font-heading);
-    font-size: 1.125rem;
-    font-weight: 400;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 2rem;
-    max-width: 500px;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--color-text-light);
+    margin-bottom: 3rem;
 }
 
 .va-card {
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1.25rem;
-    padding: 1.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
     margin-bottom: 2.5rem;
-    max-width: 400px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: var(--glass-shadow);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .va-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-accent);
+    transform: translateY(-8px);
+    border-color: var(--color-accent-hover);
+    background: rgba(255, 255, 255, 0.06);
 }
 
-.va-header {
-    margin-bottom: 0.75rem;
+.va-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at top right, rgba(251, 191, 36, 0.1), transparent 70%);
 }
 
 .va-bank {
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     color: var(--color-accent);
-    font-weight: 700;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    display: block;
 }
 
 .va-number {
     font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 2.5rem;
+    font-weight: 800;
     color: white;
     letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1;
 }
 
 .va-name {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .trust-badges {
     display: flex;
-    gap: 2rem;
-    margin-top: 3rem;
-    opacity: 0.7;
+    gap: 3rem;
+    margin-top: 4rem;
 }
 
 .trust-item {
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    color: var(--color-text-muted);
 }
 
 /* Right Content: Floating Widget */
 .donation-widget {
-    background: rgba(255, 255, 255, 0.05);
-    /* More transparent */
-    backdrop-filter: blur(16px);
-    padding: 2.5rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    color: white;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    padding: 3.5rem 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
 }
 
+
 .widget-header {
-    margin-bottom: 2rem;
-    text-align: center;
+    margin-bottom: 2.5rem;
 }
 
 .widget-title {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: white;
-    /* White for dark bg */
-    margin-bottom: 0.5rem;
+    font-size: 2.25rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #FFFFFF, #CBD5E1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
 }
 
 .widget-subtitle {
     display: block;
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.7);
-    /* Light */
+    font-size: 1rem;
+    color: var(--color-text-light);
 }
 
 /* Chip Options */
 .amount-chips {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .chip {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    /* Glass */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
-    /* Pill shape */
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.85);
-    /* White */
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: center;
 }
 
 .chip:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     border-color: var(--color-accent);
+    transform: translateY(-2px);
 }
 
 .chip.active {
     background: var(--color-accent);
-    color: #1a1a1a;
+    color: #000;
     border-color: var(--color-accent);
+    box-shadow: var(--shadow-gold);
 }
 
 /* Input Field */
 .input-group {
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .currency-symbol {
     position: absolute;
-    left: 1rem;
+    left: 1.5rem;
     top: 50%;
     transform: translateY(-50%);
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
+    font-weight: 800;
+    color: var(--color-accent);
 }
 
 .custom-input {
     width: 100%;
-    padding: 1rem 1rem 1rem 3rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius);
-    font-size: 1.125rem;
+    padding: 1.25rem 1.5rem 1.25rem 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    font-size: 1.5rem;
     font-family: var(--font-heading);
-    font-weight: 600;
+    font-weight: 700;
     color: white;
-    background: rgba(255, 255, 255, 0.05);
-    transition: all 0.2s;
-}
-
-.custom-input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.03);
+    transition: all 0.3s;
 }
 
 .custom-input:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.1);
 }
 
 /* Donate Button */
 .donate-btn {
     width: 100%;
-    padding: 1rem;
-    background: var(--color-accent);
-    color: #1a1a1a;
-    border: none;
-    border-radius: var(--radius);
+    padding: 1.25rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+    color: #000;
+    border-radius: 16px;
     font-family: var(--font-heading);
     font-size: 1.125rem;
-    font-weight: 700;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    box-shadow: var(--shadow-gold);
+    gap: 1rem;
+    box-shadow: 0 15px 30px -5px rgba(251, 191, 36, 0.4);
 }
 
 .donate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 20px 40px -8px rgba(251, 191, 36, 0.5);
 }
 
-/* WhatsApp Button - Prominent Style */
+/* WhatsApp Button */
 .whatsapp-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    padding: 1.35rem 2.5rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
     color: white;
     font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 700;
-    border: none;
+    font-size: 1.125rem;
+    font-weight: 800;
     border-radius: 50px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 25px -5px rgba(4, 120, 87, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
 }
 
 .whatsapp-btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 35px -5px rgba(4, 120, 87, 0.6);
+    border-color: var(--color-accent);
 }
 
-.whatsapp-btn:active {
-    transform: translateY(-1px);
+.whatsapp-btn svg {
+    color: var(--color-accent);
+    filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.4));
 }
 
 .secure-text {
     text-align: center;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -286,10 +307,10 @@
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .donation-container {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 5rem;
     }
 
     .donation-content {
@@ -297,10 +318,28 @@
     }
 
     .donation-text-sub {
-        margin: 0 auto 2.5rem;
+        margin: 0 auto 3rem;
+    }
+
+    .va-card {
+        margin: 0 auto 3rem;
     }
 
     .trust-badges {
         justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .donation-content .title-display {
+        font-size: 3rem;
+    }
+
+    .va-number {
+        font-size: 1.75rem;
+    }
+
+    .amount-chips {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

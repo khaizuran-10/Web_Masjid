@@ -18,7 +18,6 @@ const ProgramsSection = () => {
                 <div className="section-header center reveal">
                     <span className="section-subtitle">Aktivitas Kami</span>
                     <h2 className="section-title-large">Program Unggulan</h2>
-                    <div className="section-divider"></div>
                 </div>
 
                 <div className="programs-grid reveal">

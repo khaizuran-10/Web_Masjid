@@ -9,7 +9,6 @@ const PageHeader = ({ title, subtitle, description }) => {
                     {subtitle && <span className="page-subtitle">{subtitle}</span>}
                     <h1 className="page-title">{title}</h1>
                     {description && <p className="page-description">{description}</p>}
-                    <div className="page-header-divider"></div>
                 </div>
             </div>
             <div className="page-header-decoration"></div>

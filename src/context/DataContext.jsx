@@ -177,16 +177,37 @@ export const DataProvider = ({ children }) => {
     });
 
     const [about, setAbout] = useState(() => {
+        const version = '2.0';
+        const savedVersion = localStorage.getItem('masjid_about_version');
+        if (savedVersion !== version) {
+            localStorage.setItem('masjid_about_version', version);
+            localStorage.removeItem('masjid_about');
+            return INITIAL_ABOUT;
+        }
         const saved = localStorage.getItem('masjid_about');
         return saved ? JSON.parse(saved) : INITIAL_ABOUT;
     });
 
     const [programs, setPrograms] = useState(() => {
+        const version = '2.0';
+        const savedVersion = localStorage.getItem('masjid_programs_version');
+        if (savedVersion !== version) {
+            localStorage.setItem('masjid_programs_version', version);
+            localStorage.removeItem('masjid_programs');
+            return INITIAL_PROGRAMS;
+        }
         const saved = localStorage.getItem('masjid_programs');
         return saved ? JSON.parse(saved) : INITIAL_PROGRAMS;
     });
 
     const [footer, setFooter] = useState(() => {
+        const version = '2.0';
+        const savedVersion = localStorage.getItem('masjid_footer_version');
+        if (savedVersion !== version) {
+            localStorage.setItem('masjid_footer_version', version);
+            localStorage.removeItem('masjid_footer');
+            return INITIAL_FOOTER;
+        }
         const saved = localStorage.getItem('masjid_footer');
         return saved ? JSON.parse(saved) : INITIAL_FOOTER;
     });
@@ -197,6 +218,16 @@ export const DataProvider = ({ children }) => {
     });
 
     const [board, setBoard] = useState(() => {
+        // Force reset to catch the new data update
+        const version = '2.0';
+        const savedVersion = localStorage.getItem('masjid_board_version');
+
+        if (savedVersion !== version) {
+            localStorage.setItem('masjid_board_version', version);
+            localStorage.removeItem('masjid_board');
+            return INITIAL_BOARD;
+        }
+
         const saved = localStorage.getItem('masjid_board');
         return saved ? JSON.parse(saved) : INITIAL_BOARD;
     });

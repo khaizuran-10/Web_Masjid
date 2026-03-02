@@ -33,8 +33,8 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 2.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 1rem;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .section-title-md {
@@ -74,19 +74,37 @@
     grid-template-columns: 240px 1fr;
     gap: 2rem;
     background: rgba(255, 255, 255, 0.02);
-    /* More transparent */
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-radius: 1.5rem;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+}
+
+.news-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/islamic-pattern.png');
+    background-size: 200px;
+    opacity: 0.02;
+    z-index: 0;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
 .news-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     border-color: var(--color-accent);
+}
+
+.news-item:hover::after {
+    opacity: 0.05;
 }
 
 .news-image {
@@ -181,36 +199,39 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 1.5rem;
     border-radius: 1.25rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
     overflow: hidden;
 }
 
-.event-item::before {
+.event-item::after {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--color-accent);
-    opacity: 0;
-    transition: opacity 0.3s;
+    inset: 0;
+    background-image: url('../assets/islamic-pattern.png');
+    background-size: 150px;
+    opacity: 0.02;
+    z-index: 0;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
 .event-item:hover {
-    transform: translateX(5px);
+    transform: translateX(10px) scale(1.02);
     box-shadow: var(--shadow-lg);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-accent);
 }
 
-.event-item:hover::before {
-    opacity: 1;
+.event-item:hover::after {
+    opacity: 0.05;
 }
 
 .event-date-box {

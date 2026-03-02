@@ -1,7 +1,26 @@
+.documentation-page-container {
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
 .documentation-page {
-    padding-top: 120px;
-    padding-bottom: 4rem;
+    padding-bottom: 8rem;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.documentation-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/islamic-pattern.png');
+    background-size: 300px;
+    opacity: 0.02;
+    z-index: 0;
+    mix-blend-mode: screen;
+    pointer-events: none;
 }
 
 .gallery-grid {
